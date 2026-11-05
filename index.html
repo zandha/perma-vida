@@ -1,7 +1,532 @@
-<!DOCTYPE html>
-<html>
-  <body>
-    <h1>Hello World</h1>
-    <p>My free GitHub website!</p>
-  </body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Perma Vida is a regenerative consulting alliance in Costa Rica supporting the wellbeing of humanity, the habitats we depend on, and our beloved planet.">
+<title>Perma Vida | Together We Thrive</title>
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&family=Courgette&family=Comfortaa:wght@500;700&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
+<style>
+/* Layout: matches Regenesis. White header with lime rule > full-bleed photo hero > colored bands (cream, soil, sand, sky, forest) alternating with full-width photo strips > soil footer.
+   Single light look by design, like Regenesis: every color set explicitly. */
+:root {
+  color-scheme: light;
+  --white: #ffffff;
+  --cream: #fdfaf4;
+  --sand: #e8d9b5;
+  --sand-card: #f6f0e2;
+  --soil: #2a2c2f;
+  --soil-card: #3a3d41;
+  --sky-light: #0898f0;
+  --brown: #3d2108;
+  --brown-card: #54371d;
+  --forest: #1e4620;
+  --grass: #3f8f1c;
+  --lime: #5fd81f;
+  --sky: #1a6ea8;
+  --gold: #f5c842;
+  --orange: #f07c2a;
+  --ember: #c9401f;
+  --ink: #2c2c2c;
+  --muted: #5d5a52;
+  --line: #e6dcc6;
+  --display: "Fraunces", Georgia, serif;
+  --body: "DM Sans", system-ui, sans-serif;
+  --word: "Courgette", Georgia, cursive;
+  --round: "Comfortaa", "DM Sans", sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--white); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.65; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--white); }
+a { color: var(--grass); }
+:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; border-radius: 6px; }
+
+.inner { max-width: 1120px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.band { padding-block: 88px; }
+.center { text-align: center; display: flex; flex-direction: column; align-items: center; }
+h1, h2, h3 { font-family: var(--display); margin: 0; line-height: 1.15; text-wrap: balance; }
+h2 { font-size: clamp(2rem, 4vw, 2.9rem); font-weight: 700; color: var(--forest); }
+h3 { font-size: 1.22rem; font-weight: 700; color: var(--forest); }
+.label { font-family: var(--body); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--orange); margin: 0 0 12px; }
+.lead { font-size: 1.15rem; color: var(--muted); max-width: 62ch; margin: 16px 0 0; }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--body); font-weight: 700; font-size: 1rem; padding: 13px 26px; border-radius: 999px; border: 0; cursor: pointer; text-decoration: none; white-space: nowrap; }
+.btn-fire { background: linear-gradient(120deg, var(--gold), #f6a04d); color: #3a2400; box-shadow: 0 6px 18px rgba(240, 150, 50, 0.28); }
+.btn-fire:hover { filter: brightness(1.06); }
+.btn-lime { background: var(--lime); color: var(--forest); }
+.btn-lime:hover { filter: brightness(1.05); }
+.btn-ghost { background: transparent; color: var(--forest); border: 2px solid var(--forest); }
+.btn-ghost:hover { background: var(--forest); color: #fff; }
+
+/* Wordmark */
+.lockup { --h: 56px; display: flex; align-items: center; gap: calc(var(--h) * 0.16); text-decoration: none; }
+.lockup img { height: var(--h); width: auto; display: block; }
+.lockup .words { display: flex; flex-direction: column; justify-content: center; height: var(--h); line-height: 1; }
+.lockup .pv { font-family: var(--word); font-style: normal; font-weight: 400; font-size: calc(var(--h) * 0.56); color: var(--grass); white-space: nowrap; }
+.lockup .fd { font-family: var(--round); font-weight: 500; font-size: calc(var(--h) * 0.21); letter-spacing: 0.22em; text-transform: uppercase; color: var(--sky); margin-top: calc(var(--h) * 0.12); margin-left: calc(var(--h) * 0.06); white-space: nowrap; }
+
+/* Header */
+.site-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(255, 255, 255, 0.97); border-bottom: 5px solid var(--sky-light); box-shadow: 0 2px 14px rgba(0, 0, 0, 0.05); }
+.site-header .inner { max-width: 1280px; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 12px; }
+.site-nav { display: flex; gap: 26px; }
+.site-nav a { color: var(--forest); text-decoration: none; font-weight: 500; font-size: 1.02rem; }
+.site-nav a:hover { color: var(--grass); }
+
+/* Photo placeholders */
+.ph-note { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; border: 2px dashed currentColor; border-radius: 12px; padding: 14px 18px; max-width: 36ch; font-size: 0.9rem; line-height: 1.45; }
+.ph-note b { font-family: var(--body); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; }
+.ph-note small { font-size: 0.78rem; opacity: 0.85; }
+.photo-strip { position: relative; min-height: 380px; display: grid; place-items: center; background: linear-gradient(135deg, #2c5b22 0%, #4c8a2c 55%, #7ea94a 100%); color: rgba(255, 255, 255, 0.92); padding: 32px 20px; }
+.photo-strip.earth { background: linear-gradient(135deg, #6b3f17 0%, #9a6a35 55%, #c49a5c 100%); }
+.bfly { position: absolute; pointer-events: none; z-index: 2; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.25)); animation: flutter 7s ease-in-out infinite; }
+.bfly.flip { transform: scaleX(-1); }
+.fly-h { position: relative; }
+.h2fly { width: 58px; left: calc(100% + 14px); top: -26px; rotate: -8deg; }
+.h2fly-left { left: auto; right: calc(100% + 14px); rotate: 8deg; }
+@keyframes flutter { 0%, 100% { translate: 0 0; } 50% { translate: 6px -10px; } }
+@media (prefers-reduced-motion: reduce) { .bfly { animation: none; } }
+.about, .news { position: relative; overflow: hidden; }
+.photo-img { display: block; width: 100%; height: clamp(260px, 38vw, 520px); object-fit: cover; }
+
+/* Hero */
+.hero { position: relative; background: #1e4620 url("img/hero-roadside.jpg") center 55% / cover no-repeat; color: #fff; overflow: hidden; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 25, 12, 0.55) 0%, rgba(10, 25, 12, 0.35) 45%, rgba(10, 25, 12, 0.6) 100%); pointer-events: none; }
+.hero h1, .hero .sub, .hero .intro { text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45); }
+.hero .intro { max-width: 52ch; margin: 22px 0 26px; font-size: 1.05rem; color: rgba(255, 255, 255, 0.88); }
+.btn-lg { padding: 16px 34px; font-size: 1.1rem; }
+.hero .inner { position: relative; z-index: 1; padding-block: 110px 96px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.hero .label { color: var(--gold); }
+.hero h1 { font-style: italic; font-weight: 400; font-size: clamp(3rem, 7.5vw, 5.4rem); color: #fff; }
+.hero .sub { font-size: 1.25rem; max-width: 40ch; margin: 18px 0 28px; color: #fff; font-weight: 600; }
+.hero .ph-note { position: absolute; z-index: 1; right: max(20px, env(safe-area-inset-right, 0px)); bottom: 20px; color: rgba(255, 255, 255, 0.75); max-width: 30ch; }
+.hero .meet { margin-top: 22px; color: rgba(255, 255, 255, 0.85); font-weight: 500; text-decoration: none; }
+.hero .meet:hover { color: #fff; }
+
+/* Signup */
+.signup { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 30px; width: 100%; max-width: 560px; }
+.signup input { flex: 1 1 160px; min-width: 0; font: inherit; font-size: 1rem; padding: 13px 18px; border-radius: 999px; border: 1.5px solid var(--line); background: #fff; color: var(--ink); }
+.signup input:focus { outline: none; border-color: var(--lime); box-shadow: 0 0 0 3px rgba(95, 216, 31, 0.3); }
+.signup .btn { flex: 0 0 auto; }
+.privacy { font-size: 0.88rem; margin: 12px 0 0; opacity: 0.85; }
+.form-note { font-size: 0.92rem; font-weight: 600; margin: 10px 0 0; }
+
+/* About */
+.about { background: var(--cream); }
+.mission { max-width: 760px; }
+.mission p { font-size: 1.2rem; margin: 20px 0 0; color: var(--ink); }
+
+/* Pillars on soil */
+.pillars { background: var(--brown); }
+.pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.pillar { background: var(--brown-card); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 18px; padding: 32px 28px; display: flex; align-items: center; gap: 18px; min-width: 0; }
+.pillar img { flex: 0 0 56px; width: 56px; height: 56px; object-fit: contain; }
+.pillar h3 { color: var(--gold); font-size: 1.3rem; line-height: 1.3; }
+
+/* Alliance members */
+.alliance { background: var(--white); }
+.members { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 44px; }
+.member { background: var(--cream); border: 1px solid var(--line); border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; min-width: 0; box-shadow: 0 4px 16px rgba(42, 44, 47, 0.06); }
+.m-logo { width: 100%; max-width: 220px; height: 150px; display: flex; align-items: center; justify-content: center; }
+.m-logo img { max-width: 100%; max-height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+.m-logo span { font-family: var(--round); font-weight: 700; font-size: 1.5rem; }
+.m-logo small, .org small { font-size: 0.72rem; color: var(--muted); }
+.member h3 { font-size: 1.4rem; }
+.member p { margin: 0; color: var(--muted); font-size: 0.98rem; flex: 1; }
+.member a { font-weight: 700; font-size: 0.97rem; text-decoration: none; color: var(--grass); }
+.member a:hover { text-decoration: underline; }
+.supported { margin-top: 64px; text-align: center; }
+.supported h3 { font-size: 1.15rem; color: var(--muted); font-family: var(--body); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.org-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 28px; margin-top: 26px; }
+.org { width: 170px; height: 120px; border: 1px solid transparent; border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 10px; text-decoration: none; color: var(--forest); font-weight: 600; font-size: 0.92rem; line-height: 1.25; }
+.org-text { border: 2px dashed #cfc3a6; }
+.org small { font-size: 0.72rem; color: var(--muted); font-weight: 500; }
+.org:hover { border-color: var(--line); background: var(--cream); }
+.org img { max-width: 100%; max-height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+
+/* Values on sky */
+.values { background: linear-gradient(rgba(12, 34, 18, 0.66), rgba(12, 34, 18, 0.72)), #1e4620 url("img/syntropic-aerial.jpg") center / cover no-repeat; color: #fff; }
+.values h2 { color: #fff; }
+.values .label { color: var(--gold); }
+.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 30px; max-width: 980px; }
+.chip { background: rgba(255, 255, 255, 0.16); backdrop-filter: blur(4px); border: 1px solid rgba(255, 255, 255, 0.34); border-radius: 999px; padding: 8px 16px; font-size: 0.96rem; font-weight: 500; }
+.values .closing { max-width: 64ch; margin: 30px 0 0; font-size: 1.08rem; color: rgba(255, 255, 255, 0.9); }
+
+/* Newsletter on forest */
+.news { background: var(--forest); color: #fff; }
+.news h2 { color: #fff; }
+.news .label { color: var(--lime); }
+.news .lead { color: rgba(255, 255, 255, 0.85); }
+.news .signup input { background: rgba(255, 255, 255, 0.08); color: #fff; border-color: rgba(255, 255, 255, 0.35); }
+.news .signup input::placeholder { color: rgba(255, 255, 255, 0.7); }
+
+/* Library on sand */
+.library { background: var(--sand); }
+.soon { background: var(--sand-card); border-radius: 22px; padding: 44px; display: grid; grid-template-columns: 1fr; gap: 26px 40px; align-items: center; box-shadow: 0 6px 24px rgba(61, 33, 8, 0.08); }
+.badge { display: inline-block; font-weight: 700; font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; background: linear-gradient(120deg, var(--gold), #f6a04d); color: #3a2400; padding: 6px 14px; border-radius: 999px; margin-bottom: 16px; }
+.cats { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; }
+.cats span { font-size: 0.86rem; color: var(--muted); border: 1px dashed #bda77a; border-radius: 999px; padding: 5px 12px; }
+
+/* Support + Join */
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.card-big { border-radius: 22px; overflow: hidden; display: flex; flex-direction: column; }
+.card-big .top { min-height: 220px; display: grid; place-items: center; padding: 24px; }
+.card-big .shot { display: block; width: 100%; height: 280px; object-fit: cover; }
+.card-big .body { padding: 32px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+.card-big .body p { margin: 0; }
+.card-big h2 { font-size: clamp(1.6rem, 2.8vw, 2.1rem); }
+.card-big .btn { align-self: flex-start; margin-top: auto; }
+.give { background: linear-gradient(135deg, var(--gold) 0%, #f6a04d 100%); color: #3a2400; }
+.give .top { background: rgba(0, 0, 0, 0.1); color: #3a2400; }
+.give h2 { color: #3a2400; }
+.give .label { color: #7a4a0c; }
+.give .fine { font-size: 0.88rem; opacity: 0.85; }
+.give .btn { background: #fff; color: #3a2400; }
+.join { background: var(--cream); border: 1px solid var(--line); }
+.join .top { background: linear-gradient(135deg, #2c5b22, #7ea94a); color: rgba(255, 255, 255, 0.9); }
+.join .body p { color: var(--muted); }
+
+/* Contact */
+.contact { background: var(--cream); }
+.contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 34px; width: 100%; }
+.c-card { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 6px; text-align: left; min-width: 0; }
+.c-card .k { font-weight: 700; font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sky); }
+.c-card .v { font-size: 1.15rem; font-weight: 600; color: var(--forest); user-select: all; overflow-wrap: anywhere; }
+.c-card a, .c-card button { font-weight: 700; font-size: 0.95rem; align-self: flex-start; }
+.apps { display: flex; gap: 10px; margin-top: 6px; }
+.app { width: 44px; height: 44px; display: grid; place-items: center; }
+.app img { width: 44px; height: 44px; object-fit: contain; }
+.app.tg img { width: 37px; height: 37px; }
+.app:hover { filter: brightness(1.08); }
+.contact .actions { margin-top: 30px; }
+#pending-note { color: var(--forest); }
+
+/* Footer */
+footer { background: var(--soil); color: rgba(255, 255, 255, 0.72); padding-block: 60px 40px; font-size: 0.93rem; }
+footer .inner { display: grid; gap: 34px; }
+.foot-top { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+footer .lockup .pv { color: #8fd45a; }
+footer .lockup .fd { color: #8cc3ec; }
+footer .signup { margin-top: 0; justify-content: flex-start; }
+footer .signup input { background: rgba(255, 255, 255, 0.06); color: #fff; border-color: rgba(255, 255, 255, 0.3); }
+footer .signup input::placeholder { color: rgba(255, 255, 255, 0.6); }
+footer .form-note { color: var(--gold); }
+.foot-brand { display: grid; gap: 22px; justify-items: start; }
+.foot-signup { justify-self: end; width: 100%; max-width: 340px; }
+footer .signup { flex-direction: column; align-items: stretch; flex-wrap: nowrap; }
+footer .signup input { flex: 0 0 auto; }
+footer .signup .btn { align-self: stretch; }
+@media (max-width: 640px) {
+  .foot-top { grid-template-columns: 1fr; }
+  .foot-signup { justify-self: start; max-width: 420px; }
+}
+.socials { display: flex; gap: 20px; flex-wrap: wrap; }
+.socials a { color: #fff; text-decoration: none; font-weight: 500; }
+.socials a:hover { color: var(--gold); }
+.legal { border-top: 1px solid rgba(255, 255, 255, 0.14); padding-top: 22px; display: grid; gap: 8px; }
+.legal p { margin: 0; max-width: 90ch; }
+
+@media (max-width: 960px) {
+  .site-nav { display: none; }
+  .members { grid-template-columns: 1fr; max-width: 560px; margin-inline: auto; }
+  .pillar-grid, .contact-grid { grid-template-columns: 1fr; }
+  .soon { grid-template-columns: 1fr; padding: 30px; }
+  .hero .ph-note { position: static; margin: 0 auto 40px; display: flex; width: fit-content; }
+}
+@media (max-width: 520px) {
+  .h2fly { width: 38px; left: calc(100% + 6px); top: -18px; }
+  .h2fly-left { left: auto; right: calc(100% + 6px); }
+}
+@media (max-width: 640px) {
+  .band { padding-block: 60px; }
+  .pair { grid-template-columns: 1fr; }
+  .hero .inner { padding-block: 72px 40px; }
+  .photo-strip { min-height: 240px; }
+  .site-header .lockup { --h: 44px; }
+  .site-header .btn { padding: 9px 14px; font-size: 0.86rem; }
+}
+@media (max-width: 400px) {
+  .site-header .lockup .fd { display: none; }
+  .site-header .lockup .words { height: auto; }
+}
+
+/* Full-bleed images: break out of any side padding */
+html, body { margin: 0; padding: 0; overflow-x: clip; }
+.photo-img { width: 100vw; max-width: none; margin-left: calc(50% - 50vw); }
+
+/* Old badge as illustration in the Library card */
+.soon { grid-template-columns: 240px 1fr; }
+.soon .badge-art { width: 100%; height: auto; filter: drop-shadow(0 10px 22px rgba(61, 33, 8, 0.18)); }
+@media (max-width: 760px) {
+  .soon { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  .soon .badge-art { width: min(220px, 64vw); }
+}
+
+/* Hero headline */
+.hero h1 { font-family: "DM Serif Display", Georgia, serif; font-style: italic; font-weight: 400; }
+
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a class="lockup" href="#top" aria-label="Perma Vida Foundation, home">
+      <img src="logo.png" alt="">
+      <span class="words"><span class="pv">Perma Vida</span><span class="fd">Foundation</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#alliance">Alliance</a>
+      <a href="#values">Values</a>
+      <a href="#library">Library</a>
+      <a href="#support">Support</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn-fire" href="https://tally.so/r/1WkPZl" target="_blank" rel="noopener" data-tally>Let's Connect</a>
+  </div>
+</header>
+
+<main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+    <div class="inner">
+      <p class="label">Regenerative Living Alliance</p>
+      <h1 id="hero-title">Together We Thrive!</h1>
+      <p class="sub">Grow your food, your health, and your community with the support of experienced guides in Costa Rica.</p>
+      <a class="btn btn-fire btn-lg" href="https://tally.so/r/1WkPZl" target="_blank" rel="noopener" data-tally>Book a Free Consultation</a>
+      <p class="privacy">Free discovery call · English or Español</p>
+    </div>
+  </section>
+
+  <section id="about" class="about band" aria-labelledby="about-title">
+    <div class="inner center">
+      <p class="label">About</p>
+      <h2 id="about-title" class="fly-h">Our Mission<img class="bfly flip h2fly" src="img/butterfly.png" alt=""></h2>
+      <div class="mission">
+        <p>Perma Vida is a regenerative consulting alliance dedicated to supporting the wellbeing of humanity, the habitats we depend on, and our beloved planet. We cultivate a thriving world by addressing the root causes of the challenges we face and sharing regenerative solutions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pillars band" aria-label="What we help you do">
+    <div class="inner pillar-grid">
+      <article class="pillar">
+        <img src="img/icon-globe.png" alt="">
+        <h3>Regenerate your natural habitat and ecosystem.</h3>
+      </article>
+      <article class="pillar">
+        <img src="img/icon-heart.png" alt="">
+        <h3>Restore your holistic health and happiness.</h3>
+      </article>
+      <article class="pillar">
+        <img src="img/icon-fist.png" alt="">
+        <h3>Reclaim your personal and tribal sovereignty.</h3>
+      </article>
+    </div>
+  </section>
+
+  <img class="photo-img" src="img/planting-crew.jpg" alt="Volunteers planting a syntropic food forest along mounded rows of red earth" style="object-position: center 22%">
+
+  <section id="alliance" class="alliance band" aria-labelledby="alliance-title">
+    <div class="inner">
+      <div class="center">
+        <p class="label">Our Network</p>
+        <h2 id="alliance-title">Perma Vida Alliance</h2>
+        <p class="lead">Regenerative services for individuals, families, and communities.</p>
+      </div>
+      <div class="members">
+        <article class="member">
+          <a class="m-logo" href="https://regenesis.permavida.org"><img src="img/logo-regenesis.jpg" alt="Regenesis Permaculture website"></a>
+          <h3>Regenesis Permaculture</h3>
+          <p>Homesteading in the tropics? Travis Britzke brings a wealth of wisdom for evaluating land, restoring biodiversity, designing and implementing food forests, training crews, and teaching workshops on a variety of topics.</p>
+          <a href="https://regenesis.permavida.org">Visit Regenesis Permaculture →</a>
+        </article>
+        <article class="member">
+          <a class="m-logo" href="https://apeliving.com"><img src="img/logo-ape-living.png" alt="Ape Living website"></a>
+          <h3>Ape Living</h3>
+          <p>Ready for a radical yet rational approach to natural health that is based on your nature as a great ape? Zander Hathaway offers guidance and support with raw plant-based nutrition, regenerative detoxification, natural movement, relocation, and adaptation.</p>
+          <a href="https://apeliving.com">Visit Ape Living →</a>
+        </article>
+        <article class="member">
+          <a class="m-logo" href="https://regenerationnationcr.com"><img src="img/logo-regeneration-nation.jpg" alt="Regeneration Nation website"></a>
+          <h3>Regeneration Nation</h3>
+          <p>Looking to join or co-create an intentional community in Costa Rica? Beyond his revolutionary podcast and Ecovillage Tour, Jason Thomas provides personalized support to help you build the invisible infrastructure your project needs to thrive.</p>
+          <a href="https://regenerationnationcr.com">Visit Regeneration Nation →</a>
+        </article>
+      </div>
+      <div class="supported">
+        <h3>Organizations We Support</h3>
+        <div class="org-row">
+          <a class="org" href="https://diamantebridge.org" aria-label="Diamante Bridge Collective"><img src="img/logo-dbc.jpg" alt="Diamante Bridge Collective logo"></a>
+          <a class="org" href="https://communitycarbontrees.org" aria-label="Community Carbon Trees"><img src="img/logo-cct.png" alt="Community Carbon Trees logo"></a>
+          <a class="org" href="https://upwardspirals.net" aria-label="Upward Spirals"><img src="img/logo-upward-spirals.png" alt="Upward Spirals logo"></a>
+          <a class="org" href="https://ecomaste.com" aria-label="EcoMaste Lodge, Retreat and Learning Center"><img src="img/logo-ecomaste.jpg" alt="EcoMaste logo"></a>
+          <a class="org" href="https://www.facebook.com/vidaautenticaCR/" aria-label="Vida Auténtica"><img src="img/logo-vida-autentica.png" alt="Vida Auténtica logo"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="values" class="values band" aria-labelledby="values-title">
+    <div class="inner center">
+      <p class="label">We stand for</p>
+      <h2 id="values-title" class="fly-h">Our Values<img class="bfly h2fly h2fly-left" src="img/butterfly.png" alt="" style="animation-delay: -2s"></h2>
+      <div class="chips">
+        <span class="chip">Freedom</span><span class="chip">Peace</span><span class="chip">Love</span><span class="chip">Cooperation</span><span class="chip">Biodiversity</span><span class="chip">Rewilding</span><span class="chip">Animal Welfare</span><span class="chip">Environmental Restoration</span><span class="chip">Permaculture</span><span class="chip">Syntropic Agroforestry</span><span class="chip">Natural Health</span><span class="chip">Plant-Based Nutrition</span><span class="chip">Low-Tech Living</span><span class="chip">Homesteading</span><span class="chip">Natural Law</span><span class="chip">Sovereignty</span><span class="chip">Volunteerism</span><span class="chip">Agorism</span><span class="chip">Sociocracy</span><span class="chip">Holistic Decision Making</span><span class="chip">Intentional Communities</span><span class="chip">Compassionate Communication</span><span class="chip">Alternative Education</span><span class="chip">Recycling</span><span class="chip">Regenerative Business</span><span class="chip">Cottage Industries</span><span class="chip">Local Economies</span><span class="chip">Sustainable Development *</span>
+      </div>
+      <p class="closing">* Truly sustainable development, as opposed to the centralized, high-tech, and extractive kinds promoted by many mainstream institutions.</p>
+    </div>
+  </section>
+
+  <section id="newsletter" class="news band" aria-labelledby="news-title">
+    <div class="inner center">
+      <p class="label">Newsletter</p>
+      <h2 id="news-title">Get the Fruitful Newsletter</h2>
+      <p class="lead">Enjoy fresh, seasonal insights on natural health, homesteading, and community building.</p>
+      <form class="signup" data-signup>
+        <input id="news-first" name="FNAME" type="text" placeholder="First Name" autocomplete="given-name" aria-label="First name">
+        <input id="news-email" name="EMAIL" type="email" placeholder="Email" autocomplete="email" aria-label="Email" required>
+        <button class="btn btn-fire" type="submit">Join the Newsletter</button>
+      </form>
+      <p class="privacy">We respect your privacy and never share your information.</p>
+    </div>
+  </section>
+
+  <img class="photo-img" src="img/fruit-harvest.jpg" alt="Hands reaching into a colorful spread of jackfruit, mangosteen, rambutan, durian and star fruit" style="object-position: center 45%">
+
+  <section id="library" class="library band" aria-labelledby="library-title">
+    <div class="inner">
+      <div class="soon">
+        <img class="badge-art" src="img/badge.png" alt="Illustrated Perma Vida badge: banana, jackfruit and palm trees over flowers, mushrooms and a pineapple, with soil and water below" width="600" height="600">
+        <div>
+          <span class="badge">Coming soon</span>
+          <h2 id="library-title">The Regenerative Library</h2>
+          <p class="lead">Hand-picked content to help us all better understand who we are, how we got here, and how we can thrive.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="support" class="band" aria-label="Support and consultation">
+    <div class="inner pair">
+      <article class="card-big give">
+        <img class="shot" src="img/seedling-planting.jpg" alt="A volunteer planting a seedling in a mulched row of red soil, with a crew working uphill" style="object-position: center 55%">
+        <div class="body">
+          <h2>Show Your Love</h2>
+          <p>Your gift helps us plant free food along public roads, build the digital resource library, and support the people doing the work. Blessings!</p>
+          <a class="btn" href="https://www.paypal.com/donate?hosted_button_id=QHEXRHALUU3X2">Give with PayPal</a>
+        </div>
+      </article>
+      <article id="consult" class="card-big join">
+        <img class="shot" src="img/circle.jpg" alt="Neighbors holding hands in a circle on a freshly mulched planting site" style="object-position: center 60%">
+        <div class="body">
+          <h2>Start Here</h2>
+          <p>Let us know about your project and goals. We'll be in touch to help you level up your health, homestead, and community.</p>
+          <a class="btn btn-fire" href="https://tally.so/r/1WkPZl" target="_blank" rel="noopener" data-tally>Book a Free Consultation</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact" class="contact band" aria-labelledby="contact-title">
+    <div class="inner center">
+      <p class="label">Contact</p>
+      <h2 id="contact-title" class="fly-h">Let's Connect<img class="bfly flip h2fly" src="img/butterfly.png" alt="" style="animation-delay: -4s"></h2>
+      <div class="contact-grid">
+        <div class="c-card"><span class="k">Email</span><span class="v">support@permavida.org</span></div>
+        <div class="c-card"><span class="k">Zander · English</span><span class="v">+506 8694 8609</span><span class="apps"><a class="app tg" href="https://t.me/+50686948609" aria-label="Telegram +506 8694 8609" title="Telegram"><img src="img/icon-telegram.png" alt=""></a><a class="app wa" href="https://wa.me/50686948609" aria-label="WhatsApp +506 8694 8609" title="WhatsApp"><img src="img/icon-whatsapp.png" alt=""></a></span></div>
+        <div class="c-card"><span class="k">Travis · Español</span><span class="v">+506 8540 8588</span><span class="apps"><a class="app tg" href="https://t.me/+50685408588" aria-label="Telegram +506 8540 8588" title="Telegram"><img src="img/icon-telegram.png" alt=""></a><a class="app wa" href="https://wa.me/50685408588" aria-label="WhatsApp +506 8540 8588" title="WhatsApp"><img src="img/icon-whatsapp.png" alt=""></a></span></div>
+      </div>
+      <div class="actions"><a class="btn btn-fire" href="https://tally.so/r/1WkPZl" target="_blank" rel="noopener" data-tally>Send a Message</a></div>
+      <p class="form-note" id="pending-note" hidden></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="inner">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="lockup" href="#top" style="--h: 68px" aria-label="Perma Vida Foundation, back to top">
+          <img src="logo.png" alt="">
+          <span class="words"><span class="pv">Perma Vida</span><span class="fd">Foundation</span></span>
+        </a>
+        <nav class="socials" aria-label="Social">
+          <a href="https://www.instagram.com/permavida/">Instagram</a>
+          <a href="https://www.facebook.com/PermaVidaCR">Facebook</a>
+          <a href="https://www.youtube.com/@regenesispermaculturecr">YouTube</a>
+        </nav>
+      </div>
+      <div class="foot-signup">
+        <form class="signup" data-signup>
+          <input id="foot-first" name="FNAME" type="text" placeholder="First Name" autocomplete="given-name" aria-label="First name">
+          <input id="foot-email" name="EMAIL" type="email" placeholder="Email" autocomplete="email" aria-label="Email" required>
+          <button class="btn btn-fire" type="submit">Join the Newsletter</button>
+        </form>
+      </div>
+    </div>
+    <div class="legal">
+      <p>This website and its contents are for informational purposes only. The information shared, linked, and otherwise associated with this site is not medical, legal, or other professional advice and should not be treated as such.</p>
+      <p>© 2026 Perma Vida | Powered by Permaculture &amp; Pura Vida!</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Newsletter: our own fields posted straight to the Mailchimp list (no embed, no badge)
+var MC_POST = 'https://permavida.us20.list-manage.com/subscribe/post?u=a5490762b31bd9817c03bf8e4&id=67bf84a3ab&f_id=00782deef0';
+var MC_BOT = 'b_a5490762b31bd9817c03bf8e4_67bf84a3ab';
+document.querySelectorAll('[data-signup]').forEach(function (f, i) {
+  f.action = MC_POST; f.method = 'post'; f.target = '_blank';
+  var bot = document.createElement('input');
+  bot.type = 'text'; bot.name = MC_BOT; bot.tabIndex = -1; bot.autocomplete = 'off'; bot.setAttribute('aria-hidden', 'true');
+  bot.style.cssText = 'position:absolute;left:-5000px;';
+  f.appendChild(bot);
+  var btn = f.querySelector('button');
+  function say(text) {
+    var note = f.nextElementSibling && f.nextElementSibling.classList.contains('form-note') ? f.nextElementSibling : null;
+    if (!note) { note = document.createElement('p'); note.className = 'form-note'; note.setAttribute('role', 'status'); f.insertAdjacentElement('afterend', note); }
+    note.textContent = text;
+  }
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var cb = 'mcDone' + i + '_' + Date.now(), done = false, tag = document.createElement('script');
+    var q = new URLSearchParams(new FormData(f)); q.set('c', cb);
+    btn.disabled = true; say('Joining…');
+    function finish() { done = true; btn.disabled = false; try { delete window[cb]; } catch (x) {} tag.remove(); }
+    window[cb] = function (r) {
+      finish();
+      if (r && r.result === 'success') { f.reset(); say('Thank you! Please check your inbox to confirm your subscription.'); }
+      else {
+        var msg = String((r && r.msg) || 'Something went wrong. Please try again.').replace(/<[^>]*>/g, '').replace(/^\d+\s*-\s*/, '');
+        say(/already subscribed/i.test(msg) ? "You're already on the list. Thank you!" : msg);
+      }
+    };
+    tag.onerror = function () { if (done) return; finish(); say(''); f.submit(); };
+    setTimeout(function () { if (!done) tag.onerror(); }, 10000);
+    tag.src = MC_POST.replace('/post?', '/post-json?') + '&' + q.toString();
+    document.body.appendChild(tag);
+  });
+});
+
+
+
+// Contact form: open Tally as a popup; falls back to a new tab if Tally can't load
+(function () {
+  var s = document.createElement('script'); s.src = 'https://tally.so/widgets/embed.js'; s.async = true;
+  document.head.appendChild(s);
+  document.querySelectorAll('a[data-tally]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      if (!window.Tally || !window.Tally.openPopup) return;
+      e.preventDefault();
+      window.Tally.openPopup('1WkPZl', { layout: 'modal', width: 640, overlay: true, autoClose: 4000 });
+    });
+  });
+})();
+</script>
+</body>
 </html>
